@@ -12,8 +12,10 @@ source:
     - patches/0001-fix-version-number-for-setuptools.patch
 
 build:
-  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   number: 0
+  # streamlit is not available for s390x
+  skip: true  # [s390x]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
   build:
