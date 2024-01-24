@@ -6,22 +6,29 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/streamlit_pandas_profiling-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 6719cf2cfd682b59470d90aa09b4529a6622d915cef4faa3e88f85c00b7faf79
+  patches:
+    - patches/0001-fix-version-in-setup.cfg.patch
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
   number: 0
+  # streamlit is not available for s390x
+  skip: true  # [s390x]
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
+  build:
+    - patch   # [not win]
+    - m2-patch  # [win]
   host:
     - pip
-    - python >=3.6
-    - streamlit >=0.63
+    - python
+    - setuptools
+    - wheel
   run:
+    - python
     - pandas-profiling
-    - python >=3.6
     - streamlit >=0.63
 
 test:
@@ -33,10 +40,14 @@ test:
     - pip
 
 about:
-  home: https://share.streamlit.io/okld/streamlit-gallery/main?p=pandas-profiling
-  summary: Pandas Profiling component for Streamlit.
+  home: https://github.com/okld/streamlit-pandas-profiling
   license: MIT
+  license_family: MIT
   license_file: LICENSE
+  summary: Streamlit Pandas Profiling
+  description: Pandas Profiling component for Streamlit.
+  dev_url: https://github.com/okld/streamlit-pandas-profiling
+  doc_url: https://github.com/okld/streamlit-pandas-profiling
 
 extra:
   recipe-maintainers:
