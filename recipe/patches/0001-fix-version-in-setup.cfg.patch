@@ -1,0 +1,24 @@
+From 98ac078d2f36d8d9090df5f6ae0589cb1b05f487 Mon Sep 17 00:00:00 2001
+From: Lorenzo Pirritano <lpirritano@anaconda.com>
+Date: Wed, 24 Jan 2024 13:25:51 -0600
+Subject: [PATCH] fix version in setup.cfg
+
+---
+ setup.cfg | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setup.cfg b/setup.cfg
+index 31be9ca..6bb03ff 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -1,6 +1,6 @@
+ [metadata]
+ name = streamlit_pandas_profiling
+-version = attr: streamlit_pandas_profiling.__version__
++version = attr: streamlit_pandas_profiling.version.__version__
+ description = Pandas Profiling component for Streamlit.
+ long_description = file: README.md
+ long_description_content_type = text/markdown
+-- 
+2.39.1
+
