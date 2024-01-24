@@ -8,8 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 6719cf2cfd682b59470d90aa09b4529a6622d915cef4faa3e88f85c00b7faf79
-  patches:
-    - patches/0001-fix-version-number-for-setuptools.patch
+  # patches:
+  #   - patches/0001-fix-version-number-for-setuptools.patch
 
 build:
   number: 0
@@ -18,9 +18,9 @@ build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
-  build:
-    - patch   # [not win]
-    - m2-patch  # [win]
+  # build:
+  #   - patch   # [not win]
+  #   - m2-patch  # [win]
   host:
     - pip
     - python
