@@ -12,15 +12,12 @@ source:
     - patches/0001-fix-version-in-setup.cfg.patch
 
 build:
-  number: 0
+  number: 1
   # streamlit is not available for s390x
   skip: true  # [s390x]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
 
 requirements:
-  build:
-    - patch   # [not win]
-    - m2-patch  # [win]
   host:
     - pip
     - python
